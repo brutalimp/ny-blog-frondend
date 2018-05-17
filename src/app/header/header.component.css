@@ -1,0 +1,28 @@
+.header {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #fafafb; */
+    border-bottom: 1.2px solid gainsboro; 
+    background-color: white;
+    opacity: 0.9;
+    padding: 0 5%;
+}
+
+.title {
+    padding-left: 1rem;
+    font-size: 2rem;
+    margin-bottom: 0px; 
+}
+
+
+
+

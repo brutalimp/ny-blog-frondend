@@ -1,0 +1,9 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class='main'>
+  <app-header></app-header>
+  <app-alert></app-alert>
+  <div class='content'>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-dialog [hidden]='!global.displayDialog'></app-dialog>

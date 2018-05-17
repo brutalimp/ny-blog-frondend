@@ -1,0 +1,21 @@
+button.select {
+    border: 1px solid rgb(118, 118, 194);
+    float: right;
+}
+
+form .input{
+    display: inline-block;
+}
+
+form .radioContainer{
+    padding-left: 15px;
+    height: 40px;
+    flex-wrap: nowrap;
+}
+
+form .submit{
+    justify-content: flex-end;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}

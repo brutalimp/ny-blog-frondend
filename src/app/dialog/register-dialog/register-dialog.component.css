@@ -1,0 +1,6 @@
+.form button {
+    position: relative;
+    margin-top: 5px;
+    float: right;
+    bottom: 10px;
+}
