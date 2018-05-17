@@ -37,7 +37,7 @@ export class UploadComponent implements OnInit {
     const extension = fileName.slice(fileName.lastIndexOf('.'), fileName.length);
     const allowExtensions = this.allowedFile.split(',');
     if (allowExtensions.find(item => item == extension)) {
-      this.article.name = fileName;
+      this.article.filename = fileName;
       const fileReader = new FileReader();
       fileReader.readAsText(file);
       fileReader.onloadend = (event) => {

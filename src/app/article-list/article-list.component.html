@@ -1,7 +1,7 @@
 <div *ngIf="articleList.length>0" class="article-list">
   <ul class="list-group list">
     <li class="list-group-item" [class.private]='!global.loggedin && !article.public' *ngFor="let article of articleList; ">
-      <a class="link" (click)='viewClick(article._id)'>{{article.name}}({{article.owner}})</a>
+      <a class="link" (click)='viewClick(article._id)'>{{article.name}}</a>
       <div class="operations">
         <i *ngIf="global.loggedin && !article.public" class="fa fa-lock" aria-hidden="true"></i>
         <i *ngIf="global.loggedin && article.public" class="fa fa-unlock" aria-hidden="true"></i>
