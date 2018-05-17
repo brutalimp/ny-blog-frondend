@@ -1,0 +1,24 @@
+language: node_js
+dist: trusty
+sudo: false
+node_js: 
+  - "8"
+
+cache:
+  directories:
+    - node_modules
+  
+matrix:
+  fast_finish: true
+
+install:
+  - npm install
+  - ng build -bh "https://brutalimp.github.io/ny-blog-frondend/"
+
+deploy: 
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: master
