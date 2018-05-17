@@ -1,19 +1,19 @@
 <div class="container">
   <form class="form" #uploadForm="ngForm">
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="nameEN">名字</label>
+      <label class="col-sm-2 col-form-label" for="name">名字</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="name" name='nameEN' [(ngModel)]='article.nameEN' #nameEN='ngModel' required>
+        <input type="text" class="form-control" id="name" name='name' [(ngModel)]='article.name' #name='ngModel' required>
         <input id="file-input" type="file" [accept]='allowedFile' style="display: none;" />
       </div>
-      <div class="col-sm-4" [hidden]="nameEN.valid || nameEN.pristine" class="alert alert-danger">
+      <div class="col-sm-4" [hidden]="name.valid || name.pristine" class="alert alert-danger">
           *必需项
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="name">文件({{allowedFile}})</label>
+      <label class="col-sm-2 col-form-label" for="filename">文件({{allowedFile}})</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control col-sm-5 input" [(ngModel)]='article.name' #name='ngModel' name='name' required>
+        <input type="text" class="form-control col-sm-5 input" [(ngModel)]='article.filename' #filename='ngModel' name='filename' required>
         <button class='btn select col-sm-3' (click)='selectFile()' >选择文件</button>
       </div>
     </div>

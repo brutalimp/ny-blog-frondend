@@ -40,14 +40,7 @@ export class ArticleComponent implements OnInit {
     })
   }
 
-
   public parseFile() {
-    // marked.setOptions({
-    //   highlight: code => { return highlightAuto(code).value },
-    //   // langPrefix: 'hljs-'
-    // });
     this.parseredHtml = marked(this.article.content);
   }
-
-
 }

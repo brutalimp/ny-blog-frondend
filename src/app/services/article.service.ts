@@ -6,7 +6,11 @@ import { Article } from '../models/Article';
 export class ArticleService {
   constructor(private http: HttpClient) { }
 
-  public getAll(user) {
+  public getAllPublic() {
+    return this.http.get<Article[]>('http://localhost:3000/api/public/article');
+  }
+
+  public getAll() {
     return this.http.get<Article[]>('http://localhost:3000/api/article');
   }
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../services/global.service';
+import { BroadcasterService } from '../services/broadcaster.service';
 import { routeConst } from '../../constants/route.constant';
+import { eventConstant } from '../../constants/event.constant';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -32,6 +34,7 @@ export class MenuComponent implements OnInit {
   }]
 
   constructor(private router: Router,
+    private $broadcaserService: BroadcasterService,
     private global: GlobalService) { }
 
   ngOnInit() { }
@@ -53,6 +56,7 @@ export class MenuComponent implements OnInit {
 
   public logOut() {
     this.global.logOut();
+    this.$broadcaserService.broadcast(eventConstant.LOGOUT);
     this.closeDashboard();
   }
 

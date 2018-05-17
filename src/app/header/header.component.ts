@@ -16,21 +16,27 @@ export class HeaderComponent implements OnInit {
 
   constructor(private broadcasterService: BroadcasterService,
     public global: GlobalService,
-    private userService: UserService, 
+    private userService: UserService,
     private authorizationService: AuthorizationService) { }
 
-  public ngOnInit() {
+  public ngOnInit() { }
+
+  public ngAfterContentInit() {
     this.init();
   }
 
   public init() {
-    if(!this.authorizationService.getAuthorizationToken()) return;
+    if (!this.authorizationService.getAuthorizationToken()) {
+      this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
+      return;
+    };
     this.userService.getMe().subscribe((res) => {
-        this.global.user.name = res.name;
-        this.global.loggedin = true;
+      this.global.user.name = res.name;
+      this.global.loggedin = true;
+      this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
     })
   }
-  
+
   public displayLoginDialog() {
     this.broadcasterService.broadcast(eventConstant.OPENDIALOG, diaglogType.lOGIN);
   }

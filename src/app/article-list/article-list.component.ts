@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../services/global.service';
+import { BroadcasterService } from '../services/broadcaster.service';
 import { ArticleService } from '../services/article.service';
 import { AlertService } from '../services/alert.service';
+import { eventConstant } from '../../constants/event.constant';
 import { Article } from '../models/Article';
 
 @Component({
@@ -16,31 +18,63 @@ export class ArticleListComponent implements OnInit {
 
   constructor(public global: GlobalService,
     private router: Router,
+    private $broadcasterService: BroadcasterService,
     private alertService: AlertService,
-    private articleService: ArticleService) { }
+    private articleService: ArticleService) {
 
-  ngOnInit() {
-    this.getAllArticles();
+    this.getArticles();
   }
 
-  public getAllArticles() {
-    this.articleService.getAll(this.global.user).subscribe((articles) => {
-      if (articles.length > 0) {
-        for (let article of articles) {
-          const temArticle = new Article();
-          temArticle._id = article._id;
-          temArticle.name = article.name;
-          temArticle.public = article.public
-          this.articleList.push(temArticle);
-        }
+  public ngOnInit() {
+    this.$broadcasterService.register(eventConstant.LOGOUT, () => {
+      this.getAllPublicArticles();
+    });
+    this.$broadcasterService.register(eventConstant.ISLOGGEDIN, () => {
+      this.getArticles();
+    });
+  }
+
+  public getArticles() {
+    if (this.global.loggedin) {
+      this.getUserArticles();
+    } else {
+      this.getAllPublicArticles();
+    }
+
+  }
+
+  public getUserArticles() {
+    this.articleService.getAll().subscribe((articles) => {
+      this.getArticleHandler(articles);
+    });
+  }
+
+  public getAllPublicArticles() {
+    this.articleService.getAllPublic().subscribe((articles) => {
+      this.getArticleHandler(articles);
+    });
+  }
+
+  public getArticleHandler(articles: Article[]) {
+    if (articles.length > 0) {
+      this.articleList.length = 0;
+      for (let article of articles) {
+        const temArticle = new Article();
+        temArticle.owner = article.owner;
+        temArticle._id = article._id;
+        temArticle.name = article.name;
+        temArticle.public = article.public
+        this.articleList.push(temArticle);
       }
-    })
+    }
   }
 
   public viewClick(id: string) {
 
-    this.router.navigateByUrl('/article/'+ id);
-
+    this.router.navigateByUrl('/article/' + id);
+    // this.articleService.delete(id).subscribe((res)=> {
+    //   console.log(res);
+    // });
   }
 
   public deleteArticle(id: string) {
