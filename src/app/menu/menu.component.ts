@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
 
   constructor(private router: Router,
     private $broadcaserService: BroadcasterService,
-    private global: GlobalService) { }
+    public global: GlobalService) { }
 
   ngOnInit() { }
 
