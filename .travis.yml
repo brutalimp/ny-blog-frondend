@@ -15,7 +15,7 @@ install:
   - npm install
 
 script:
-  - ng build --prod -bh "https://brutalimp.github.io/ny-blog-frondend/"
+  - ng build --prod
 
 deploy: 
   provider: pages
