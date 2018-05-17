@@ -1,5 +1,6 @@
-<div (click)='displayDashboard()'>
-  <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+<div>
+  <i class="fa fa-bars fa-2x" *ngIf="global.loggedin" aria-hidden="true" (click)='displayDashboard()'></i>
+  <i class="fa fa-home fa-2x" *ngIf="!global.loggedin" aria-hidden="true" (click)='gotoHome()'></i>
 </div>
 
 <div *ngIf='showDashboard' class="dashboard">

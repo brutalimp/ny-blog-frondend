@@ -54,6 +54,10 @@ export class MenuComponent implements OnInit {
     this.closeDashboard();
   }
 
+  public gotoHome() {
+    this.router.navigateByUrl('');
+  }
+
   public logOut() {
     this.global.logOut();
     this.$broadcaserService.broadcast(eventConstant.LOGOUT);
