@@ -1,5 +1,4 @@
-
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +19,7 @@ import { RegisterDialogComponent } from './dialog/register-dialog/register-dialo
 import { ContentHostComponent } from './dialog/content-host/content-host.component';
 import { ContentDirective } from './dialog/content.directive';
 
+import { AppConfig } from './services/app.config.service';
 import { BroadcasterService } from './services/broadcaster.service';
 import { GlobalService } from './services/global.service';
 import { PasswordVerifyDirective } from './directives/password-verify.directive';
@@ -36,7 +36,7 @@ import { ArticleService } from './services/article.service';
 import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
-import { GitComponent } from './git/git.component'; 
+import { GitComponent } from './git/git.component';
 
 @NgModule({
   declarations: [
@@ -65,8 +65,9 @@ import { GitComponent } from './git/git.component';
     RouterModule.forRoot(appRouters)
   ],
   entryComponents: [LoginDialogComponent, RegisterDialogComponent],
-  providers: [ BroadcasterService, GlobalService, UserService, ArticleService, AuthorizationService, AlertService,
-     AuthenticationService, LoggerService, httpInterceptorProviders ],
+  providers: [BroadcasterService, GlobalService, UserService, ArticleService, AuthorizationService, AlertService,
+    AuthenticationService, LoggerService, httpInterceptorProviders, AppConfig,
+    { provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
