@@ -1,16 +1,23 @@
 #!/bin/bash
-TRAGET="/home/www/deploy-folder"
-GIT_DIR="/home/gitrepo/ny-blog-frondend.git"
+TARGET="/home/www/ny-blog-frondend"
+GIT_DIR="/home/gitrepo/ng-blog-frondend.git"
+APP_NAME="ny-blog-frontend"
 BRANCH="master"
 
-while read oldrev newrev ref
-do
-	# only checking out the master (or whatever branch you would like to deploy)
-	if [[ $ref = refs/heads/$BRANCH ]];
-	then
-		echo "Ref $ref received. Deploying ${BRANCH} branch to production..."
-		git --work-tree=$TRAGET --git-dir=$GIT_DIR checkout -f
-	else
-		echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
-	fi
-done
+echo "post-receive: Triggered."
+if [ ! -d "$TARGET" ]; then
+  echo "mkdir $TARGET"
+  mkdir $TARGET
+fi
+cd $TARGET
+
+echo "post-receive: git check out..."
+git --git-dir=$GIT_DIR  --work-tree=$TARGET checkout -f
+
+echo "npm install" \
+&& npm install \
+&& echo "post-receive: building..." \
+&& ng build --prod \
+&& echo "post-receive: server start" \
+&& pm2 start http-server --name $APP_NAME --dist -p 80 \
+&& echo "post-receive: done."
