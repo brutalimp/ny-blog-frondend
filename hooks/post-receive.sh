@@ -1,6 +1,6 @@
 #!/bin/bash
 TRAGET="/home/www/deploy-folder"
-GIT_DIR="/home/gitrepo/ny-blog-frontend.git"
+GIT_DIR="/home/gitrepo/ny-blog-frondend.git"
 BRANCH="master"
 
 while read oldrev newrev ref
