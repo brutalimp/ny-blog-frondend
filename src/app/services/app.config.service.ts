@@ -4,7 +4,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AppConfig {
 
-    private config: any;
+    public config: configInterface = { 
+        host: 'localhost',
+        port: 80,
+        https: false
+    };
 
     constructor(private http: HttpClient) { }
 
@@ -14,9 +18,18 @@ export class AppConfig {
 
     public load() {
         return new Promise((resolve, reject) => {
-             this.http.get('assets/config.json').subscribe((res)=> {
-                  this.config = res;
+             this.http.get<configInterface>('assets/config.json').subscribe((res)=> {
+                  this.config.host = res.host;
+                  this.config.port = res.port;
+                  this.config.https = res.https;
+                  resolve(true);
              })
         })
     }
 }
+
+export interface configInterface {
+    host: string;
+    port: number;
+    https: boolean;
+} 

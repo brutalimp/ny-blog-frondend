@@ -24,6 +24,7 @@ import { BroadcasterService } from './services/broadcaster.service';
 import { GlobalService } from './services/global.service';
 import { PasswordVerifyDirective } from './directives/password-verify.directive';
 
+import { ApiBaseService } from './services/api-base.service';
 import { AuthorizationService } from './services/authorization.service';
 import { AuthenticationService } from './services/authentication.service';
 import { LoggerService } from './services/logger.service';
@@ -65,7 +66,7 @@ import { GitComponent } from './git/git.component';
     RouterModule.forRoot(appRouters)
   ],
   entryComponents: [LoginDialogComponent, RegisterDialogComponent],
-  providers: [BroadcasterService, GlobalService, UserService, ArticleService, AuthorizationService, AlertService,
+  providers: [ ApiBaseService, BroadcasterService, GlobalService, UserService, ArticleService, AuthorizationService, AlertService,
     AuthenticationService, LoggerService, httpInterceptorProviders, AppConfig,
     { provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
