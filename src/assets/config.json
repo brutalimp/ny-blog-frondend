@@ -1,5 +1,6 @@
 {
     "host": "67.209.189.122",
     "port": "3000",
-    "https": false
+    "https": false,
+    "enableRegister": true 
 }

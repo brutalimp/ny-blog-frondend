@@ -2,7 +2,7 @@
     <app-menu class="menu"></app-menu>
     <p></p>
     <div *ngIf='!global.loggedin' class="buttons">
-       <button class="button btn btn-primary" (click)='displayRegisterDialog()'> 注册</button>
+       <button *ngIf="appConfig.config.enableRegister" class="button btn btn-primary" (click)='displayRegisterDialog()' > 注册</button>
        <button class="button btn btn-primary" (click)='displayLoginDialog()'> 登陆</button>
     </div>
     <!-- <app-profile *ngIf='global.loggedin'></app-profile> -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BroadcasterService } from '../services/broadcaster.service';
+import { AppConfig } from '../services/app.config.service';
 import { GlobalService } from '../services/global.service';
 import { AuthorizationService } from '../services/authorization.service';
 import { UserService } from '../services/user.service';
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   constructor(private broadcasterService: BroadcasterService,
     public global: GlobalService,
     private userService: UserService,
-    private authorizationService: AuthorizationService) { }
+    private authorizationService: AuthorizationService,
+    public appConfig: AppConfig) { }
 
   public ngOnInit() { }
 
