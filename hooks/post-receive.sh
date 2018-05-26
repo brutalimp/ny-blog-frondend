@@ -19,6 +19,7 @@ echo "npm install" \
 && echo "post-receive: building..." \
 && ng build --prod \
 && echo "post-receive: server start" \
+&& cd dist \
 && (pm2 delete $APP_NAME || true ) \
-&& pm2 start http-server --name $APP_NAME --dist -p 80 \
+&& pm2 start http-server --name $APP_NAME -p 80 \
 && echo "post-receive: done."
