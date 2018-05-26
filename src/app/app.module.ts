@@ -37,7 +37,6 @@ import { ArticleService } from './services/article.service';
 import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
-import { GitComponent } from './git/git.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +56,6 @@ import { GitComponent } from './git/git.component';
     AlertComponent,
     ProfileComponent,
     MenuComponent,
-    GitComponent
   ],
   imports: [
     BrowserModule,
