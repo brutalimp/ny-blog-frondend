@@ -11,7 +11,7 @@ export class ArticleService {
     return this.http.get<Article[]>('/api/public/article');
   }
 
-  public getAll() {
+  public getArticles() {
     return this.http.get<Article[]>('/api/article');
   }
 

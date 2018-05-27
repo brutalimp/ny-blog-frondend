@@ -30,6 +30,6 @@ export class ApiBaseService {
 
   public concatUrl(action: string) {
     const protocol = this.appConfig.config.https ? 'https' : 'http';
-    return `${protocol}://${this.appConfig.config.host}:${this.appConfig.config.port}/${action}`;
+    return `${protocol}://${this.appConfig.config.host}:${this.appConfig.config.port}${action}`;
   }
 }

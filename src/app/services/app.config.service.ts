@@ -6,7 +6,7 @@ export class AppConfig {
 
     public config: configInterface = { 
         host: 'localhost',
-        port: 80,
+        port: 3000,
         https: false,
         enableRegister: true,
     };
@@ -20,7 +20,14 @@ export class AppConfig {
     public load() {
         return new Promise((resolve, reject) => {
              this.http.get<configInterface>('assets/config.json').subscribe((res)=> {
-                  this.config = res;
+                  if(res.host.length>0) {
+                      this.config.host = res.host;
+                  }
+                  if(res.port) {
+                      this.config.port = res.port;
+                  }
+                  this.config.enableRegister = res.enableRegister;
+                  this.config.https = res.https;
                   resolve(true);
              })
         })

@@ -26,8 +26,8 @@ export class LoginDialogComponent implements OnInit {
 
   public logIn() {
     this.authenticationService.logIn(this.user).subscribe((res) => {
-      this.globalService.logIn(this.user);
       this.authorizationService.setAuthorizationToken(res.token);
+      this.globalService.logIn(this.user);
       this.$broadcasterService.broadcast(eventConstant.CLOSEDIALOG);
     });
   }

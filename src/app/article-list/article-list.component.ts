@@ -27,7 +27,7 @@ export class ArticleListComponent implements OnInit {
 
   public ngOnInit() {
     this.$broadcasterService.register(eventConstant.LOGOUT, () => {
-      this.getAllPublicArticles();
+      this.getArticles();
     });
     this.$broadcasterService.register(eventConstant.ISLOGGEDIN, () => {
       this.getArticles();
@@ -35,29 +35,13 @@ export class ArticleListComponent implements OnInit {
   }
 
   public getArticles() {
-    if (this.global.loggedin) {
-      this.getUserArticles();
-    } else {
-      this.getAllPublicArticles();
-    }
-
-  }
-
-  public getUserArticles() {
-    this.articleService.getAll().subscribe((articles) => {
+    this.articleService.getArticles().subscribe((articles) => {
       this.getArticleHandler(articles);
     });
   }
-
-  public getAllPublicArticles() {
-    this.articleService.getAllPublic().subscribe((articles) => {
-      this.getArticleHandler(articles);
-    });
-  }
-
   public getArticleHandler(articles: Article[]) {
+    this.articleList.length = 0;
     if (articles.length > 0) {
-      this.articleList.length = 0;
       for (let article of articles) {
         const temArticle = new Article();
         temArticle.owner = article.owner;
@@ -70,11 +54,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   public viewClick(id: string) {
-
     this.router.navigateByUrl('/article/' + id);
-    // this.articleService.delete(id).subscribe((res)=> {
-    //   console.log(res);
-    // });
   }
 
   public deleteArticle(id: string) {
