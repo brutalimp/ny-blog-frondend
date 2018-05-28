@@ -14,12 +14,11 @@ cd $TARGET
 echo "post-receive: git check out..."
 git --git-dir=$GIT_DIR  --work-tree=$TARGET checkout -f
 
-echo "npm install" \
-&& npm install \
+echo "yarn install" \
+&& yarn install \
 && echo "post-receive: building..." \
 && ng build --prod \
 && echo "post-receive: server start" \
-&& cd dist \
 && (pm2 delete $APP_NAME || true ) \
 && pm2 start nginx --name $APP_NAME \
 && echo "post-receive: done."
