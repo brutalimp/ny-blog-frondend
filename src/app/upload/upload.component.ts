@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AlertService } from '../services/alert.service';
+import { AppConfig } from '../services/app.config.service';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../models/Article';
 
@@ -13,12 +14,14 @@ export class UploadComponent implements OnInit {
   public article: Article;
   @ViewChild('uploadForm') public uploadForm;
   private resArticle;
-  public allowedFile = '.md'
+  public allowedFile: string
   public inputEle: HTMLInputElement;
 
   constructor(private renderer: Renderer2,
+    private appConfig: AppConfig,
     private articleService: ArticleService,
     private alertService: AlertService) {
+    this.allowedFile = this.appConfig.config.acceptFileType;
     this.article = new Article();
   }
 
@@ -35,9 +38,11 @@ export class UploadComponent implements OnInit {
     const file = event.target['files'][0] as File;
     const fileName = file.name;
     const extension = fileName.slice(fileName.lastIndexOf('.'), fileName.length);
+    const fileType = extension.slice(1, extension.length);
     const allowExtensions = this.allowedFile.split(',');
     if (allowExtensions.find(item => item == extension)) {
       this.article.filename = fileName;
+      this.article.type = fileType;
       const fileReader = new FileReader();
       fileReader.readAsText(file);
       fileReader.onloadend = (event) => {

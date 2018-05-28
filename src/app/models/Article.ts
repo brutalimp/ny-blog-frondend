@@ -1,6 +1,6 @@
 export class Article {
     _id?: string;
-    nameEN?: string;
+    type?: string;
     name?: string;
     filename?: string; 
     content?: string;

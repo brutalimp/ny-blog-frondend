@@ -8,6 +8,7 @@ export class AppConfig {
         host: 'localhost',
         port: 3000,
         https: false,
+        acceptFileType: ".md",
         enableRegister: true,
     };
 
@@ -28,6 +29,7 @@ export class AppConfig {
                   }
                   this.config.enableRegister = res.enableRegister;
                   this.config.https = res.https;
+                  this.config.acceptFileType = res.acceptFileType;
                   resolve(true);
              })
         })
@@ -38,5 +40,6 @@ export interface configInterface {
     host: string;
     port: number;
     https: boolean;
+    acceptFileType: string;
     enableRegister: boolean;
 } 

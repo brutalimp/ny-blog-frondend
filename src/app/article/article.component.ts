@@ -32,6 +32,7 @@ export class ArticleComponent implements OnInit {
   public getArticleById(id: string) {
     this.articleService.getById(id).subscribe((res: any) => {
       const filereader = new FileReader();
+      this.article = res;
       filereader.readAsText(new Blob([new Uint8Array(res.content.data)]), 'utf-8');
       filereader.onloadend = (event) => {
         this.article.content = event.target['result'];
@@ -41,6 +42,13 @@ export class ArticleComponent implements OnInit {
   }
 
   public parseFile() {
-    this.parseredHtml = marked(this.article.content);
+    switch (this.article.type) {
+      case 'md':
+        this.parseredHtml = marked(this.article.content);
+        break;
+      case 'txt':
+        this.parseredHtml = this.article.content;
+        break;   
+    }
   }
 }
