@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       return;
     };
     this.userService.getMe().subscribe((res) => {
-      this.global.user.name = res.name;
+      this.global.user = res;
       this.global.loggedin = true;
       this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
     })
