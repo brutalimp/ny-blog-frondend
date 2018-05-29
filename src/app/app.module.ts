@@ -34,6 +34,7 @@ import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
+import { HistoryService } from './services/history.service';
 import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
@@ -64,8 +65,8 @@ import { MenuComponent } from './menu/menu.component';
     RouterModule.forRoot(appRouters)
   ],
   entryComponents: [LoginDialogComponent, RegisterDialogComponent],
-  providers: [ ApiBaseService, BroadcasterService, GlobalService, UserService, ArticleService, AuthorizationService, AlertService,
-    AuthenticationService, LoggerService, httpInterceptorProviders, AppConfig,
+  providers: [ApiBaseService, BroadcasterService, GlobalService, UserService, ArticleService, HistoryService, AuthorizationService,
+    AlertService, AuthenticationService, LoggerService, httpInterceptorProviders, AppConfig,
     { provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })

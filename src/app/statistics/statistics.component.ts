@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoryService } from '../services/history.service';
+import { ViewHistory } from '../models/History';
 
 @Component({
   selector: 'app-statistics',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor() { }
+  public historys: ViewHistory[] = [];
+
+  constructor(private hitstoryService: HistoryService) { }
 
   ngOnInit() {
+    this.getHistorys();
+  }
+
+  public getHistorys() {
+     this.hitstoryService.getHistorys().subscribe((res)=> {
+       this.historys = res;
+     })
   }
 
 }
