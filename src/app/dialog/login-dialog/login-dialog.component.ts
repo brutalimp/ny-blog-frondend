@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthorizationService } from '../../services/authorization.service';
 import { GlobalService } from '../../services/global.service';
@@ -12,7 +13,7 @@ import { User } from '../../models/User';
   styleUrls: ['./login-dialog.component.css']
 })
 export class LoginDialogComponent implements OnInit {
-
+  @ViewChild('loginForm') loginForm: NgForm;
   public user: User;
 
   constructor(private authenticationService: AuthenticationService,
@@ -29,6 +30,12 @@ export class LoginDialogComponent implements OnInit {
       this.authorizationService.setAuthorizationToken(res.token);
       this.globalService.logIn(this.user);
       this.$broadcasterService.broadcast(eventConstant.CLOSEDIALOG);
+    }, (err) => {
+      if (err.status === 404) {
+        this.loginForm.controls['name'].setErrors({ 'incorrect': true });
+      } else if (err.status === 401) {
+        this.loginForm.controls['password'].setErrors({ 'incorrect': true });
+      }
     });
   }
 }

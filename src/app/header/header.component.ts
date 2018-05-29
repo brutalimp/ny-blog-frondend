@@ -36,6 +36,8 @@ export class HeaderComponent implements OnInit {
       this.global.user = res;
       this.global.loggedin = true;
       this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
+    }, (err) => {
+      this.authorizationService.clearAuthorizationToken();
     })
   }
 
