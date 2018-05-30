@@ -1,3 +1,18 @@
-<p>
-  statistics works!
-</p>
+<table class="table table-bordered nomargin">
+  <thead>
+    <tr>
+      <th scope="col">博客名</th>
+      <th scope="col">用户名</th>
+      <th scope="col">时间</th>
+      <th scope="col">OS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let history of historys">
+      <td >{{history.articleID}}</td>
+      <td>{{history.viewerID}}</td>
+      <td>{{history.timestamp | timeFormator}}</td>
+      <td>{{history.os}}</td>
+    </tr>
+  </tbody>
+</table>

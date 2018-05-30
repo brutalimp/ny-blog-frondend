@@ -39,6 +39,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 import { OnlineComponent } from './online/online.component';
+import { TimeFormatorPipe } from './pipes/time-formator.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { OnlineComponent } from './online/online.component';
     ProfileComponent,
     MenuComponent,
     OnlineComponent,
+    TimeFormatorPipe,
   ],
   imports: [
     BrowserModule,
