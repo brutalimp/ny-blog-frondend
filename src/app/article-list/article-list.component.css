@@ -11,6 +11,7 @@ ul.list li {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    cursor: pointer;
 }
 
 ul li .operations {

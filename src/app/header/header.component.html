@@ -1,9 +1,10 @@
 <div class="header">
     <app-menu class="menu"></app-menu>
-    <p></p>
-    <div *ngIf='!global.loggedin' class="buttons">
-       <button *ngIf="appConfig.config.enableRegister" class="button btn btn-primary" (click)='displayRegisterDialog()' > 注册</button>
-       <button class="button btn btn-primary" (click)='displayLoginDialog()'> 登陆</button>
+    <p class='title'>{{global.title | async}}</p>
+    <div>
+        <div *ngIf='!global.loggedin' class="buttons">
+            <button *ngIf="appConfig.config.enableRegister" class="button btn btn-primary" (click)='displayRegisterDialog()'> 注册</button>
+            <button class="button btn btn-primary" (click)='displayLoginDialog()'> 登陆</button>
+        </div>
     </div>
-    <!-- <app-profile *ngIf='global.loggedin'></app-profile> -->
 </div>
