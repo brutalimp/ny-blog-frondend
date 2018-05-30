@@ -4,6 +4,7 @@ import { routeConst } from '../constants/route.constant';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleComponent } from './article/article.component';
 import { UploadComponent } from './upload/upload.component';
+import { OnlineComponent } from './online/online.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -13,6 +14,7 @@ export const appRouters: Routes = [
     { path: routeConst.ARTICLE, component: ArticleComponent },
     { path: routeConst.PROFILE, component: ProfileComponent },
     { path: routeConst.UPLOAD, component: UploadComponent },
+    { path: routeConst.ONLINE, component: OnlineComponent },
     { path: routeConst.STATISTICS, component: StatisticsComponent },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 

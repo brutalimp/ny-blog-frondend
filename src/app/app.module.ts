@@ -38,6 +38,7 @@ import { HistoryService } from './services/history.service';
 import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
+import { OnlineComponent } from './online/online.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MenuComponent } from './menu/menu.component';
     AlertComponent,
     ProfileComponent,
     MenuComponent,
+    OnlineComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,10 @@ export class MenuComponent implements OnInit {
     icon: 'fa-upload',
     route: routeConst.UPLOAD
   }, {
+    title: '在线编辑',
+    icon: 'fa-pencil-square',
+    route: routeConst.ONLINE
+  },{
     title: '统计',
     icon: 'fa-bar-chart',
     route: routeConst.STATISTICS
