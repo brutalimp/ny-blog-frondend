@@ -37,7 +37,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   public addEventListener() {
     this.broadcasterService.register(eventConstant.EDITARTICLE, () => {
-      this.gotoEditArticle()
+      this.gotoEditArticle();
+    })
+    this.broadcasterService.register(eventConstant.DOWNLOAD, ()=> {
+      this.download();
     })
   }
 
@@ -57,6 +60,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
       this.globalService.title = this.article.name;
       this.parseFile();
     })
+  }
+
+  public download() {
+    var a = window.document.createElement('a');
+    a.href = window.URL.createObjectURL(new Blob([this.article.content]));
+    a.download = this.article.filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   public parseFile() {

@@ -53,4 +53,8 @@ export class HeaderComponent implements OnInit {
     this.broadcasterService.broadcast(eventConstant.EDITARTICLE);
   }
 
+  public download() {
+    this.broadcasterService.broadcast(eventConstant.DOWNLOAD);
+  }
+
 }
