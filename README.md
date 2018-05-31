@@ -5,8 +5,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Prerequisite
 
 `yum install -y nodejs`
+
 `npm install -g pm2`
-`npm install -g http-server`
+
 `npm install -g @angular/cli`
 
 ## Development server
