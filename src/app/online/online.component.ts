@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import * as marked from 'marked';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/observable/fromEvent';
@@ -6,24 +8,47 @@ import { ArticleService } from '../services/article.service';
 import { AlertService } from '../services/alert.service';
 import { Article } from '../models/Article';
 
+enum PageMode {
+  CREATE, EDIT
+}
+
 @Component({
   selector: 'app-online',
   templateUrl: './online.component.html',
   styleUrls: ['./online.component.css']
 })
 export class OnlineComponent implements OnInit, AfterViewInit {
-
+  @ViewChild('onlineForm') onlineForm: NgForm;
   public article: Article = new Article();
+  public pageMode = PageMode.CREATE;
   public fullScreen = false;
   public parsedContent;
 
   constructor(private articleService: ArticleService,
+    private activatedRoute: ActivatedRoute,
     private alertService: AlertService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getArticleIdFromRoute();
+    this.getArticle();
+  }
 
   ngAfterViewInit() {
     this.addTextareaEventHandler();
+  }
+
+  public getArticle() {
+    if (this.article._id) {
+      this.articleService.getById(this.article._id).subscribe((article: Article) => {
+        this.article = article;
+        this.pageMode = PageMode.EDIT;
+        this.parsedContent = marked(this.article.content);
+      });
+    }
+  }
+
+  public getArticleIdFromRoute() {
+    this.article._id = this.activatedRoute.snapshot.params['id'];
   }
 
   public addTextareaEventHandler() {
@@ -45,8 +70,19 @@ export class OnlineComponent implements OnInit, AfterViewInit {
 
   public save() {
     this.article.filename = this.article.name;
-    this.articleService.create(this.article).subscribe((res) => {
-      this.alertService.success('上传成功。');
-    })
+    if (this.pageMode = PageMode.CREATE) {
+      this.articleService.create(this.article).subscribe((res) => {
+        this.saveHandler();
+      })
+    } else {
+      this.articleService.update(this.article).subscribe((res) => {
+        this.saveHandler();
+      })
+    }
+  }
+
+  public saveHandler() {
+    this.alertService.success('保存成功.');
+    this.onlineForm.form.setErrors({ 'uploaded': true })
   }
 }

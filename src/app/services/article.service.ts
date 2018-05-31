@@ -16,19 +16,33 @@ export class ArticleService {
   }
 
   public getById(id: string) {
-    return this.http.get<Article>('/api/article/' + id);
+    return this.http.get<any>('/api/article/' + id).flatMap<any, Article>((res) => {
+      return this.getArticleFromRawData(res);
+    });
   }
 
   public create(article: Article) {
-    return this.http.post('/api/article', article);
+    return this.http.post<string>('/api/article', article);
   }
 
   public update(article: Article) {
-    return this.http.put('/api/article/' + article._id, article);
+    return this.http.put<string>('/api/article/' + article._id, article);
   }
 
   public delete(id: string) {
     return this.http.delete<string>('/api/article/' + id);
+  }
+
+  public getArticleFromRawData(res): Promise<Article> {
+    return new Promise((resolve, reject) => {
+      const filereader = new FileReader();
+      filereader.readAsText(new Blob([new Uint8Array(res.content.data)]), 'utf-8');
+      filereader.onloadend = (event) => {
+        let article: Article = res;
+        article.content = event.target['result'];
+        resolve(article);
+      }
+    });
   }
 
 }

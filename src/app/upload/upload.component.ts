@@ -54,7 +54,6 @@ export class UploadComponent implements OnInit {
   }
 
   public submit() {
-    // this.alertService.error('文件格式不支持!');
     this.articleService.create(this.article).subscribe((res) => {
       this.inputEle.value = '';
       this.alertService.success('上传成功。');

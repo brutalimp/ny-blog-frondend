@@ -10,7 +10,7 @@ export class GlobalService {
   public displayDialog: boolean;
   public loggedin: boolean;
   public user: User;
-  public title: Subject<string> = new Subject<string>();
+  public title: string;
 
   constructor(private authorizationService: AuthorizationService,
     private $broadcasterService: BroadcasterService) {

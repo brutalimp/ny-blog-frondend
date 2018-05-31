@@ -49,4 +49,8 @@ export class HeaderComponent implements OnInit {
     this.broadcasterService.broadcast(eventConstant.OPENDIALOG, diaglogType.REGISTERATION);
   }
 
+  public edit(){
+    this.broadcasterService.broadcast(eventConstant.EDITARTICLE);
+  }
+
 }

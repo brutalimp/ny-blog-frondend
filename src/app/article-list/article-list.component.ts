@@ -5,6 +5,7 @@ import { BroadcasterService } from '../services/broadcaster.service';
 import { ArticleService } from '../services/article.service';
 import { AlertService } from '../services/alert.service';
 import { eventConstant } from '../../constants/event.constant';
+import { routeConst } from '../../constants/route.constant';
 import { Article } from '../models/Article';
 
 @Component({
@@ -48,13 +49,13 @@ export class ArticleListComponent implements OnInit {
         temArticle._id = article._id;
         temArticle.name = article.name;
         temArticle.public = article.public
-        this.articleList.push(temArticle);
+        this.articleList.unshift(temArticle);
       }
     }
   }
 
   public viewClick(id: string) {
-    this.router.navigateByUrl('/article/' + id);
+    this.router.navigateByUrl(`article/` + id);
   }
 
   public deleteArticle(id: string) {
