@@ -14,6 +14,8 @@ import { ContentDirective } from './dialog/content.directive';
 import { PasswordVerifyDirective } from './directives/password-verify.directive';
 import { AlertComponent } from './alert/alert.component';
 import { MenuComponent } from './menu/menu.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     AppRoutingModule,
     ServicesModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [LoginDialogComponent, RegisterDialogComponent],
   bootstrap: [AppComponent]
