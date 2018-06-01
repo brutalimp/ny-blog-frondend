@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {  JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthorizationService } from './authorization.service'
 import { ApiBaseService } from './api-base.service';
 import { Registeration } from '../responses/registeration';

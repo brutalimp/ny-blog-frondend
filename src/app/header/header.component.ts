@@ -29,16 +29,13 @@ export class HeaderComponent implements OnInit {
 
   public init() {
     if (!this.authorizationService.getAuthorizationToken()) {
-      this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
       return;
     };
     this.userService.getMe().subscribe((res) => {
-      this.global.user = res;
-      this.global.loggedin = true;
-      this.broadcasterService.broadcast(eventConstant.ISLOGGEDIN);
+      this.broadcasterService.broadcast(eventConstant.LOGGEDIN, res);
     }, (err) => {
       this.authorizationService.clearAuthorizationToken();
-    })
+    });
   }
 
   public displayLoginDialog() {
@@ -49,7 +46,7 @@ export class HeaderComponent implements OnInit {
     this.broadcasterService.broadcast(eventConstant.OPENDIALOG, diaglogType.REGISTERATION);
   }
 
-  public edit(){
+  public edit() {
     this.broadcasterService.broadcast(eventConstant.EDITARTICLE);
   }
 

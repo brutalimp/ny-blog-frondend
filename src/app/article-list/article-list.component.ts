@@ -28,7 +28,7 @@ export class ArticleListComponent implements OnInit {
     this.$broadcasterService.register(eventConstant.LOGOUT, () => {
       this.getArticles();
     });
-    this.$broadcasterService.register(eventConstant.ISLOGGEDIN, () => {
+    this.$broadcasterService.register(eventConstant.LOGGEDIN, () => {
       this.getArticles();
     });
   }
