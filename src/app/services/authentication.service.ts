@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { map } from 'rxjs/operators';
 import { AuthorizationService } from './authorization.service'
 import { ApiBaseService } from './api-base.service';
 import { Registeration } from '../responses/registeration';
@@ -11,17 +12,20 @@ export class AuthenticationService {
 
   constructor(private http: ApiBaseService,
     private authorizationService: AuthorizationService,
-    ) { }
+  ) { }
 
 
   public logIn(user: User) {
-    return this.http.post<Registeration>('/api/auth/login', user);
+    return this.http.post<Registeration>('/api/auth/login', user).pipe(map((res) => {
+      this.authorizationService.setAuthorizationToken(res.token);
+      return res;
+    }));
   }
 
   public isAuthenticated(): boolean {
-     const jwtHelper = new JwtHelperService();
-     const token = this.authorizationService.getAuthorizationToken();
-     return !jwtHelper.isTokenExpired(token);
+    const jwtHelper = new JwtHelperService();
+    const token = this.authorizationService.getAuthorizationToken();
+    return !jwtHelper.isTokenExpired(token);
   }
 
 }

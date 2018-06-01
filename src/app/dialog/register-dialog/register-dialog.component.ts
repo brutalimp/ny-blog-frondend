@@ -30,7 +30,6 @@ export class RegisterDialogComponent implements OnInit {
   public register() {
     this.userService.create(this.user).subscribe((res) => {
       if (res) {
-        this.authorizationService.setAuthorizationToken(res.token)
         this.globalService.logIn(this.user);
         this.$broadcaster.broadcast(eventConstant.CLOSEDIALOG)
       }

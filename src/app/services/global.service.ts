@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from '../services/authorization.service';
+import { BroadcasterService } from '../services/broadcaster.service';
+import { eventConstant } from '../../constants/event.constant';
 import { Subject } from 'rxjs';
 import { User } from '../models/User';
 
@@ -12,6 +14,7 @@ export class GlobalService {
   public title: string;
 
   constructor(private authorizationService: AuthorizationService,
+    private broadcasterService: BroadcasterService,
     private router: Router) {
     this.displayDialog = false;
     this.loggedin = false;
@@ -22,6 +25,7 @@ export class GlobalService {
     this.loggedin = true;
     this.user.name = user.name;
     this.user._id = user._id;
+    this.broadcasterService.broadcast(eventConstant.LOGGEDIN);
   }
 
   public logOut() {
