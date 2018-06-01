@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { fromEvent as observableFromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import * as marked from 'marked';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/observable/fromEvent';
 import { ArticleService } from '../services/article.service';
 import { AlertService } from '../services/alert.service';
 import { Article } from '../models/Article';
@@ -53,8 +53,8 @@ export class OnlineComponent implements OnInit, AfterViewInit {
 
   public addTextareaEventHandler() {
     const target = document.getElementById('content');
-    const source = Observable.fromEvent(target, 'input');
-    source.debounceTime(500).subscribe(() => {
+    const source = observableFromEvent(target, 'input');
+    source.pipe(debounceTime(500)).subscribe(() => {
       this.parsedContent = marked(this.article.content);
     })
   }

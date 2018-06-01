@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthorizationService } from '../services/authorization.service';
 import { BroadcasterService } from '../services/broadcaster.service';
 import { eventConstant } from '../../constants/event.constant';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable()

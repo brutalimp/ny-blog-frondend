@@ -8,11 +8,13 @@ import { OnlineComponent } from './online/online.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { AuthGuardService } from './services/auth-guard.service';
+
 export const appRouters: Routes = [
     { path: '', component: ArticleListComponent },
     { path: routeConst.ARTICLELIST, component: ArticleListComponent },
     { path: routeConst.ARTICLE, component: ArticleComponent },
-    { path: routeConst.PROFILE, component: ProfileComponent },
+    { path: routeConst.PROFILE, component: ProfileComponent, canActivate: [AuthGuardService] },
     { path: routeConst.UPLOAD, component: UploadComponent },
     { path: routeConst.ONLINE, component: OnlineComponent },
     { path: routeConst.STATISTICS, component: StatisticsComponent },

@@ -35,6 +35,7 @@ import { httpInterceptorProviders } from './http-interceptors/index';
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
 import { HistoryService } from './services/history.service';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AlertComponent } from './alert/alert.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
@@ -66,6 +67,7 @@ import { TimeFormatorPipe } from './pipes/time-formator.pipe';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    JwtModule,
     RouterModule.forRoot(appRouters)
   ],
   entryComponents: [LoginDialogComponent, RegisterDialogComponent],

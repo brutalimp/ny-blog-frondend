@@ -1,3 +1,5 @@
+
+import {mergeMap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiBaseService } from './api-base.service'
@@ -16,9 +18,9 @@ export class ArticleService {
   }
 
   public getById(id: string) {
-    return this.http.get<any>('/api/article/' + id).flatMap<any, Article>((res) => {
+    return this.http.get<any>('/api/article/' + id).pipe(mergeMap<any, Article>((res) => {
       return this.getArticleFromRawData(res);
-    });
+    }));
   }
 
   public create(article: Article) {
