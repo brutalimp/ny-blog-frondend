@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       return;
     };
     this.userService.getMe().subscribe((res) => {
-      this.broadcasterService.broadcast(eventConstant.LOGGEDIN, res);
+      this.global.logIn(res);
     }, (err) => {
       this.authorizationService.clearAuthorizationToken();
     });
