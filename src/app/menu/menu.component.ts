@@ -63,7 +63,7 @@ export class MenuComponent implements OnInit {
   }
 
   public logOut() {
-    this.$broadcaserService.broadcast(eventConstant.LOGOUT);
+    this.global.logOut();
     this.closeDashboard();
   }
 
