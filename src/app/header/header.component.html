@@ -5,7 +5,7 @@
         <button *ngIf="appConfig.config.enableRegister" class="button btn btn-primary" (click)='displayRegisterDialog()'> 注册</button>
         <button class="button btn btn-primary" (click)='displayLoginDialog()'> 登陆</button>
     </div>
-    <div *ngIf="global.loggedin && global.title" >
+    <div *ngIf="global.loggedin && global.title" class="operations">
         <i class="fa fa-pencil-square fa-2x" aria-hidden="true" (click)="edit()" title='编辑'></i>
         <i class="fa fa-download fa-2x" aria-hidden="true"(click)="download()" title='下载'></i>
     </div>

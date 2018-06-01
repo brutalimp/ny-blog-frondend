@@ -12,6 +12,7 @@ const appRouters: Routes = [
     { path: routeConst.PROFILE, loadChildren: 'app/profile/profile.module#ProfileModule', canLoad: [AuthGuardService] },
     { path: routeConst.UPLOAD, loadChildren: 'app/upload/upload.module#UploadModule', canLoad: [AuthGuardService] },
     { path: routeConst.ONLINE, loadChildren: 'app/online/online.module#OnlineModule', canLoad: [AuthGuardService] },
+    { path: routeConst.ONLINE_UPDATE, loadChildren: 'app/online/online.module#OnlineModule', canLoad: [AuthGuardService] },
     { path: routeConst.STATISTICS, loadChildren : 'app/statistics/statistics.module#StatisticsModule', canLoad: [AuthGuardService] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ]
