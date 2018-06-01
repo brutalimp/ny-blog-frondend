@@ -136,6 +136,9 @@
     },
     "@schematics/angular:service": {
       "spec": false
+    },
+    "@schematics/angular:module": {
+      "spec": false
     }
   }
 }

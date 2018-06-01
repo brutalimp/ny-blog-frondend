@@ -21,12 +21,10 @@ export class ArticleListComponent implements OnInit {
     private router: Router,
     private $broadcasterService: BroadcasterService,
     private alertService: AlertService,
-    private articleService: ArticleService) {
-
-    this.getArticles();
-  }
+    private articleService: ArticleService) { }
 
   public ngOnInit() {
+    this.getArticles();
     this.$broadcasterService.register(eventConstant.LOGOUT, () => {
       this.getArticles();
     });
