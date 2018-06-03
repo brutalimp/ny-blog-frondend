@@ -33,8 +33,8 @@ export class GlobalService {
     this.user = new User();
     this.title = '';
     this.router.navigateByUrl('');
-    this.broadcasterService.broadcast(eventConstant.LOGOUT);
     this.authorizationService.clearAuthorizationToken();
+    this.broadcasterService.broadcast(eventConstant.LOGOUT);
   }
 
 }
