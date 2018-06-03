@@ -70,7 +70,7 @@ export class OnlineComponent implements OnInit, AfterViewInit {
 
   public save() {
     this.article.filename = this.article.name;
-    if (this.pageMode = PageMode.CREATE) {
+    if (this.pageMode === PageMode.CREATE) {
       this.articleService.create(this.article).subscribe((res) => {
         this.saveHandler();
       })
