@@ -9,5 +9,6 @@ export class Article {
     public: boolean;
     constructor() {
         this.type = 'md';
+        this.content = '';
     }
 }
