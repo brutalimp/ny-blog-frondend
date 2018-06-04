@@ -58,13 +58,18 @@ export class ArticleListComponent implements OnInit {
 
   public deleteArticle(id: string) {
     this.articleService.delete(id).subscribe((res) => {
-
-    }, (error) => {
       this.articleList = this.articleList.filter((article) => {
         return article._id !== id;
       });
-      this.alertService.success(error.error.text);
+      this.alertService.success('删除成功');
     });
   }
 
+  public togglePerm(art: Article) {
+    this.articleService.updatePerm(art._id, !art.public).subscribe(() => {
+      this.articleList.forEach((article) => {
+         article.public = !article.public;
+      })
+    })
+  }
 }

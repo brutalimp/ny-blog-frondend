@@ -15,7 +15,7 @@ ul.list li {
 }
 
 ul li .operations {
-    width: 4rem;
+    width: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

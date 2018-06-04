@@ -31,6 +31,10 @@ export class ArticleService {
     return this.http.put<string>('/api/article/' + article._id, article);
   }
 
+  public updatePerm(articleid: string, permission) {
+    return this.http.put<string>('/api/article/permission/'+ articleid, { permission });
+  }
+
   public delete(id: string) {
     return this.http.delete<string>('/api/article/' + id);
   }
