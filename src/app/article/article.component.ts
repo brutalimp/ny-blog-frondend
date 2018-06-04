@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as marked from 'marked';
-import { highlight, highlightAuto } from 'highlight.js';
 import { GlobalService } from '../services/global.service';
 import { BroadcasterService } from '../services/broadcaster.service';
 import { eventConstant } from '../../constants/event.constant';
