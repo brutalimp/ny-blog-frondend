@@ -13,6 +13,7 @@ export class StatisticsComponent implements OnInit {
 
   public chartConfig: ChartConfiguration = {};
   public historys: ViewHistory[] = [];
+  public loading = true;
 
   constructor(private hitstoryService: HistoryService) { }
 
@@ -101,6 +102,7 @@ export class StatisticsComponent implements OnInit {
 
   public renderChart() {
     const ctx = (document.getElementById('chart') as HTMLCanvasElement).getContext('2d');
+    this.loading = false;
     new Chart(ctx, this.chartConfig);
   }
 
