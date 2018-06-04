@@ -68,7 +68,9 @@ export class ArticleListComponent implements OnInit {
   public togglePerm(art: Article) {
     this.articleService.updatePerm(art._id, !art.public).subscribe(() => {
       this.articleList.forEach((article) => {
-         article.public = !article.public;
+        if (art._id === article._id) {
+          article.public = !article.public;
+        }
       })
     })
   }
