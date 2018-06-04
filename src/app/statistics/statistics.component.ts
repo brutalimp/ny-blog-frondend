@@ -73,6 +73,7 @@ export class StatisticsComponent implements OnInit {
     this.chartConfig.data.datasets[0].backgroundColor = 'rgb(54, 162, 235)';
     this.chartConfig.data.datasets[0].borderColor = 'rgb(54, 162, 235)';
     this.chartConfig.data.datasets[0].label = '次数';
+    this.chartConfig.data.datasets[0].fill = false;
     for (let i = 0; i <= 29; i++) {
       this.chartConfig.data.datasets[0].data[i] = 0;
     }
@@ -110,5 +111,5 @@ export class StatisticsComponent implements OnInit {
       this.configChart(res);
     })
   }
-  
+
 }
