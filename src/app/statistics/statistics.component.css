@@ -1,4 +1,8 @@
-.nomargin {
+:host {
+    display: block;
+    padding: 2rem;
+}
+
+.chart {
     width: 100%;
-    margin-bottom: 0;
 }

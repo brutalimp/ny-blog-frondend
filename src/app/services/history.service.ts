@@ -7,8 +7,8 @@ export class HistoryService {
 
   constructor(private http: ApiBaseService) { }
 
-  public getHistorys() {
-    return this.http.get<ViewHistory[]>('/api/history');
+  public getHistorys<T>() {
+    return this.http.get<T>('/api/history');
   }
 
   public delete(id: string) {
