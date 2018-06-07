@@ -5,12 +5,16 @@
       <div class="operations" (click)="togglePerm(article)">
         <i *ngIf="global.loggedin && !article.public" class="fa fa-lock" aria-hidden="true"></i>
         <i *ngIf="global.loggedin && article.public" class="fa fa-unlock" aria-hidden="true"></i>
-        <!-- <i *ngIf="global.loggedin" (click)="deleteArticle(article._id)" class="fa fa-trash" aria-hidden="true"></i> -->
+        <i *ngIf="global.loggedin" (click)="deleteArticle(article._id)" class="fa fa-trash" aria-hidden="true"></i>
       </div>
     </li>
   </ul>
 </div>
 
-<div class="empty"  *ngIf="articleList.length<=0">
-     没有博客。
+<div class="empty" *ngIf="loading">
+  Loading...
+</div>
+
+<div class="empty" *ngIf="!loading && articleList.length<=0">
+  没有博客。
 </div>

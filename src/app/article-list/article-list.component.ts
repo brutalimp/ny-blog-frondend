@@ -16,6 +16,7 @@ import { Article } from '../models/Article';
 export class ArticleListComponent implements OnInit {
 
   public articleList: Article[] = [];
+  public loading = true;
 
   constructor(public global: GlobalService,
     private router: Router,
@@ -40,6 +41,7 @@ export class ArticleListComponent implements OnInit {
   }
   public getArticleHandler(articles: Article[]) {
     this.articleList.length = 0;
+    this.loading = false;
     if (articles.length > 0) {
       for (let article of articles) {
         const temArticle = new Article();
