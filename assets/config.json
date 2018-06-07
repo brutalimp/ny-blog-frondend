@@ -1,0 +1,7 @@
+{
+    "host": "zshuyin.site",
+    "port": "",
+    "https": true,
+    "acceptFileType": ".md",
+    "enableRegister": false 
+}
